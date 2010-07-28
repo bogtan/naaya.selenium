@@ -1,0 +1,3 @@
+# -*- Entry points: -*-
+[distutils.commands]
+       my_command = my.command.module.Class

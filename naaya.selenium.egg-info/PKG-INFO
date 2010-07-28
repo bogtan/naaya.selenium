@@ -1,0 +1,23 @@
+Metadata-Version: 1.0
+Name: naaya.selenium
+Version: 1.0
+Summary: Selenium functional test suite for Naaya
+Home-page: http://naaya.eaudeweb.ro/
+Author: Eaudeweb
+Author-email: office@eaudeweb.ro
+License: MPL
+Description: Introduction
+        ============
+        
+        
+        
+        Changelog
+        =========
+        
+        1.0dev (unreleased)
+        -------------------
+        
+        - Initial release
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
