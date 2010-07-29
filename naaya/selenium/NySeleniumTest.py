@@ -7,3 +7,4 @@ class NySeleniumTest(unittest.TestCase):
         self.verificationErrors = []
         self.selenium = selenium("localhost", 5555, "*chrome", "http://localhost:8080/")
         self.selenium.start()
+    

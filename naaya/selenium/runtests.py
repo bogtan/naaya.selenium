@@ -1,13 +1,14 @@
 import os, optparse, time, re, unittest, importlib, sys, inspect
 from unittest import TestSuite, makeSuite
 from selenium import selenium
-from NySeleniumTest import NySeleniumTest
 
 def main():
     parameters = optparse.OptionParser()
     parameters.add_option('--site', '-s', default='http://localhost/')
     parameters.add_option('--port', '-p', default='8080')
     parameters.add_option('--browsers', '-b', default="all")
+    parameters.add_option('--user', '-u', default="admin")
+    parameters.add_option('--password', '-P', default="admin")
     
     options, arguments = parameters.parse_args()
     
@@ -48,4 +49,4 @@ def main():
 if __name__ == '__main__':
     os.system('clear')
     
-    unittest.TextTestRunner(verbosity=2).run(main())
+    unittest.TextTestRunner(verbosity = 2).run(main())
