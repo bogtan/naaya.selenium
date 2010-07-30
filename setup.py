@@ -21,10 +21,7 @@ setup(name='naaya.selenium',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'setuptools',
-          'Naaya',
           'selenium',
-          'selenium-grid',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

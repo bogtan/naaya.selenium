@@ -1,1 +1,4 @@
 setuptools
+Naaya
+selenium
+selenium-grid

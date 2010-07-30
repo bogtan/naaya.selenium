@@ -1,3 +1,4 @@
+README
 README.txt
 setup.py
 naaya/__init__.py
@@ -9,5 +10,9 @@ naaya.selenium.egg-info/namespace_packages.txt
 naaya.selenium.egg-info/not-zip-safe
 naaya.selenium.egg-info/requires.txt
 naaya.selenium.egg-info/top_level.txt
+naaya/selenium/NySeleniumConfig.py
+naaya/selenium/NySeleniumTest.py
 naaya/selenium/__init__.py
 naaya/selenium/runtests.py
+naaya/selenium/tests/__init__.py
+naaya/selenium/tests/document.py

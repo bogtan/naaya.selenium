@@ -1,3 +1,5 @@
-# -*- Entry points: -*-
-[distutils.commands]
-       my_command = my.command.module.Class
+
+      # -*- Entry points: -*-
+      [distutils.commands]
+            naaya_selenium = naaya.selenium.runtests.main
+      
