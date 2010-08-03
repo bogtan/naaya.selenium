@@ -5,7 +5,7 @@ version = '1.0'
 
 setup(name='naaya.selenium',
       version=version,
-      description="Selenium functional test suite for Naaya",
+      description="a Selenium functional test suite for Naaya",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
