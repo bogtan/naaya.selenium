@@ -93,64 +93,107 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.type("frontpicture", "/home/bogdan/Desktop/no-pre.png")
                     self.selenium.click("//input[@value='Submit']")
                     self.selenium.wait_for_page_to_load("30000")
-
-                if(option == 'Folder'):
-                    self.selenium.select("typetoadd", "index=" + str(select_options[option]))
-                    self.assertTrue(self.selenium.is_something_selected("typetoadd"));
-                    self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
-                    self.selenium.wait_for_page_to_load("15000")
-                    if(self.selenium.is_element_present("id=lang") == False):
-                        self.verificationErrors.append("Language element not"
-                                                       " identified")
-
-
-                    self.selenium.select("id=lang", "value=en")
-                    self.selenium.type("title", "My Folder")
-                    self.selenium.type("id=description", "This is a text")
-                    self.selenium.type("keywords", "my folder, test, folder, test folder")
-                    self.selenium.type("sortorder", "132")
-                    self.selenium.click("//img[@alt='Calendar']")
-                    self.selenium.click("//div[@id='middle_port']/form/div[8]")
-                    self.selenium.click("link=Today")
-                    self.selenium.click("discussion")
-                    self.selenium.click("//img[@alt='Calendar']")
-                    self.selenium.click("link=28")
-                    self.selenium.type("maintainer_email", "bogdan.tanase@eaudeweb.ro")
-                    self.selenium.click("//input[@value='Submit']")
+                    self.selenium.click("link=Test Story")
                     self.selenium.wait_for_page_to_load("30000")
-
-                if(option == "News"):
-                    self.selenium.select("typetoadd", "index=" + str(select_options[option]))
-                    self.assertTrue(self.selenium.is_something_selected("typetoadd"));
-                    self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
-                    self.selenium.wait_for_page_to_load("15000")
-                    if(self.selenium.is_element_present("id=lang") == False):
-                        self.verificationErrors.append("Language element not"
-                                                       " identified")
-
-
-                    self.selenium.select("id=lang", "value=en")
-                    self.selenium.type("title", "My News")
-                    self.selenium.type("coverage", "aoqk")
-                    self.selenium.type("coverage", "test coverage")
-                    self.selenium.type("keywords", "news, test")
-                    self.selenium.type("sortorder", "83")
-                    self.selenium.click("link=Today")
+                    self.selenium.click("//div[@id='admin_this_folder']/a[2]/span")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.type("title", "Test Story Updated")
+                    self.selenium.type("coverage", "Update geo coverate")
+                    self.selenium.type("keywords", "short, story, test story, updated keyword")
+                    self.selenium.type("sortorder", "122")
                     self.selenium.click("//img[@alt='Calendar']")
-                    self.selenium.click("link=31")
-                    self.selenium.type("releasedate", "29/07/2009")
-                    self.selenium.click("discussion")
+                    self.selenium.click("//div[@id='middle_port']/div[5]/form/div[9]")
                     self.selenium.click("link=Today")
-                    self.selenium.click("//div[@id='middle_port']/form/div[10]/span/a[1]")
-                    self.selenium.click("//a[@id='calendarlink1']/img")
-                    self.selenium.click("//div[@id='calendarin1']/table/tbody/tr[2]/td[1]/a")
+                    self.selenium.click("discussion")
+                    self.selenium.click("discussion")
                     self.selenium.click("topitem")
-                    self.selenium.type("resourceurl", "http://www.eaudeweb.ro/")
-                    self.selenium.type("source", "http://www.wikipedia.com/")
-                    self.selenium.type("smallpicture", "/home/bogdan/Desktop/brain-icon.png")
+                    self.selenium.type("resourceurl", "http://www.eaudeweb.ro/updated")
+                    self.selenium.type("source", "http://www.wikipedia.com/updataed")
+                    self.selenium.type("frontpicture", "/home/bogdan/Desktop/89366.png")
+                    self.selenium.click("//input[@value='Save changes']")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("link=Information")
+                    self.selenium.wait_for_page_to_load("15000")
+                    self.selenium.click("link=Test Story Updated")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("//div[@id='admin_this_folder']/a[1]/span")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("commitVersion:method")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("link=Checkout")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("discardVersion:method")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("link=Add comment")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.type("title", "My comment")
                     self.selenium.click("//input[@value='Submit']")
                     self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("link=Delete comment")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("link=Information")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("//input[@name='id' and @value='test-story']")
+                    self.selenium.click("deleteObjects:method")
+                    self.failUnless(re.search(r"^Are you sure[\s\S]$", self.selenium.get_confirmation()))
+
+                #if(option == 'Folder'):
+                #    self.selenium.select("typetoadd", "index=" + str(select_options[option]))
+                #    self.assertTrue(self.selenium.is_something_selected("typetoadd"));
+                #    self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
+                #    self.selenium.wait_for_page_to_load("15000")
+                #    if(self.selenium.is_element_present("id=lang") == False):
+                #        self.verificationErrors.append("Language element not"
+                #                                       " identified")
+                #
+                #
+                #    self.selenium.select("id=lang", "value=en")
+                #    self.selenium.type("title", "My Folder")
+                #    self.selenium.type("id=description", "This is a text")
+                #    self.selenium.type("keywords", "my folder, test, folder, test folder")
+                #    self.selenium.type("sortorder", "132")
+                #    self.selenium.click("//img[@alt='Calendar']")
+                #    self.selenium.click("//div[@id='middle_port']/form/div[8]")
+                #    self.selenium.click("link=Today")
+                #    self.selenium.click("discussion")
+                #    self.selenium.click("//img[@alt='Calendar']")
+                #    self.selenium.click("link=28")
+                #    self.selenium.type("maintainer_email", "bogdan.tanase@eaudeweb.ro")
+                #    self.selenium.click("//input[@value='Submit']")
+                #    self.selenium.wait_for_page_to_load("30000")
+                #
+                #if(option == "News"):
+                #    self.selenium.select("typetoadd", "index=" + str(select_options[option]))
+                #    self.assertTrue(self.selenium.is_something_selected("typetoadd"));
+                #    self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
+                #    self.selenium.wait_for_page_to_load("15000")
+                #    if(self.selenium.is_element_present("id=lang") == False):
+                #        self.verificationErrors.append("Language element not"
+                #                                       " identified")
+                #
+                #
+                #    self.selenium.select("id=lang", "value=en")
+                #    self.selenium.type("title", "My News")
+                #    self.selenium.type("coverage", "aoqk")
+                #    self.selenium.type("coverage", "test coverage")
+                #    self.selenium.type("keywords", "news, test")
+                #    self.selenium.type("sortorder", "83")
+                #    self.selenium.click("link=Today")
+                #    self.selenium.click("//img[@alt='Calendar']")
+                #    self.selenium.click("link=31")
+                #    self.selenium.type("releasedate", "29/07/2009")
+                #    self.selenium.click("discussion")
+                #    self.selenium.click("link=Today")
+                #    self.selenium.click("//div[@id='middle_port']/form/div[10]/span/a[1]")
+                #    self.selenium.click("//a[@id='calendarlink1']/img")
+                #    self.selenium.click("//div[@id='calendarin1']/table/tbody/tr[2]/td[1]/a")
+                #    self.selenium.click("topitem")
+                #    self.selenium.type("resourceurl", "http://www.eaudeweb.ro/")
+                #    self.selenium.type("source", "http://www.wikipedia.com/")
+                #    self.selenium.type("smallpicture", "/home/bogdan/Desktop/brain-icon.png")
+                #    self.selenium.click("//input[@value='Submit']")
+                #    self.selenium.wait_for_page_to_load("30000")
 
     def tearDown(self):
-        self.selenium.stop()
+        #self.selenium.stop()
         self.assertEqual([], self.verificationErrors)
