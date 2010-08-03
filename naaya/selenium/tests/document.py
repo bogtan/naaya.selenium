@@ -1,11 +1,18 @@
-import sys, os, unittest, time, re
+import sys
+import os
+import re
+import optparse
+import logging
+from selenium import selenium
 sys.path.append(os.path.join(os.getcwd(), '..'))
 
 from NySeleniumTest import NySeleniumTest
+from NySeleniumConfig import NySeleniumConfig
 
 class NaayaDocumentTest(NySeleniumTest):
     def test_document(self):
-        """Steps:
+        """
+        Steps:
         1. Access the login page
         2. Check if elements username and passwords
            are loaded before typing the values and submit form
@@ -19,6 +26,16 @@ class NaayaDocumentTest(NySeleniumTest):
 
         """
 
+        logger = logging.getLogger("Naaya Document Test")
+        logger.setLevel(logging.DEBUG)
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.DEBUG)
+        formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+        ch.setFormatter(formatter)
+        logger.addHandler(ch)
+
+        configuration = NySeleniumConfig()
+
         self.verificationErrors = []
         self.selenium.open("/portal/login_html", True)
         loaded = False
@@ -26,16 +43,16 @@ class NaayaDocumentTest(NySeleniumTest):
             loaded = self.selenium.is_element_present("__ac_name") and \
             self.selenium.is_element_present("__ac_password")
 
-        self.selenium.type("__ac_name", "admidsa")
-        self.selenium.type("__ac_password", "admin")
+        self.selenium.type("__ac_name", configuration.data['user'])
+        self.selenium.type("__ac_password", configuration.data['password'])
         self.selenium.click("submit")
 
         self.selenium.wait_for_page_to_load("15000")
 
-        if((self.selenium.is_element_present("__ac_name") == True) and \
-            (self.selenium.is_element_present("__ac_password") == True)):
-            print "Login failed! Try again..."
-            return False
+        if(self.selenium.is_element_present("__ac_name") and \
+            (self.selenium.is_element_present("__ac_password"))):
+            self.verificationErrors.append("Login failed! Username and/or"
+                                           "password incorrect! Try again...")
 
         self.selenium.open('/portal')
         self.selenium.wait_for_page_to_load("15000")
@@ -43,40 +60,97 @@ class NaayaDocumentTest(NySeleniumTest):
         self.selenium.wait_for_page_to_load("15000")
 
         if(self.selenium.is_element_present("typetoadd") == False):
-            print "An error occured while trying to access `typetoadd` \
-                    select field name!";
-            return False
+            self.verificationErrors.append("An error occured while trying to"
+                                           "access `typetoadd` select field"
+                                           " name!")
 
-        select_options = {'Folder': 1, 'News':2, 'Story':3, 'HTML Document':4, \
+        select_options = {'Folder': 1, 'News':2, 'Story':3, 'HTML Document':4,\
                           'Pointer':5, 'URL':6, 'Event':7, 'File':8, \
                           'GeoPoint':9}
-
         for option in select_options:
             if(self.selenium.is_element_present("typetoadd") != False):
-                self.selenium.select("typetoadd", "index=" + str(select_options[option]))
-                self.assertTrue(self.selenium.is_something_selected("typetoadd"));
-                self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
-                self.selenium.wait_for_page_to_load("15000")
+                if(option == "Story"):
+                    self.selenium.select("typetoadd", "index=" + str(select_options[option]))
+                    self.assertTrue(self.selenium.is_something_selected("typetoadd"));
+                    self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
+                    self.selenium.wait_for_page_to_load("15000")
+                    if(self.selenium.is_element_present("id=lang") == False):
+                        self.verificationErrors.append("Language element not"
+                                                       " identified")
 
-            return False
+                    self.selenium.select("id=lang", "value=en")
+                    self.selenium.type("title", "Test Story")
+                    self.selenium.type("id=description", "This is a text")
+                    self.selenium.type("keywords", "short, story, test story")
+                    self.selenium.type("sortorder", "125")
+                    self.selenium.click("link=Today")
+                    self.selenium.click("//img[@alt='Calendar']")
+                    self.selenium.click("link=16")
+                    self.selenium.click("link=Today")
+                    self.selenium.click("discussion")
+                    self.selenium.type("resourceurl", "http://www.eaudeweb.ro/")
+                    self.selenium.type("source", "http://www.wikipedia.com/")
+                    self.selenium.type("frontpicture", "/home/bogdan/Desktop/no-pre.png")
+                    self.selenium.click("//input[@value='Submit']")
+                    self.selenium.wait_for_page_to_load("30000")
 
-        #
-        #self.selenium.select("typetoadd", "label=HTML Document")
-        #self.selenium.fireEvent("name=typetoadd", "change")
-        #import pdb
-        #pdb.set_trace()
-        #self.selenium.wait_for_page_to_load("30000")
-        #self.selenium.open("/portal/info/doc10154/add_html" , True)
-        #self.selenium.wait_for_page_to_load("30000")
-        #self.selenium.type("title", "dadasad")
-        #self.selenium.type("keywords", "dasdaqeqdqwweq")
-        #self.selenium.click("link=Today")
-        #self.selenium.click("//input[@value='Submit']")
-        #self.selenium.wait_for_page_to_load("30000")
+                if(option == 'Folder'):
+                    self.selenium.select("typetoadd", "index=" + str(select_options[option]))
+                    self.assertTrue(self.selenium.is_something_selected("typetoadd"));
+                    self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
+                    self.selenium.wait_for_page_to_load("15000")
+                    if(self.selenium.is_element_present("id=lang") == False):
+                        self.verificationErrors.append("Language element not"
+                                                       " identified")
+
+
+                    self.selenium.select("id=lang", "value=en")
+                    self.selenium.type("title", "My Folder")
+                    self.selenium.type("id=description", "This is a text")
+                    self.selenium.type("keywords", "my folder, test, folder, test folder")
+                    self.selenium.type("sortorder", "132")
+                    self.selenium.click("//img[@alt='Calendar']")
+                    self.selenium.click("//div[@id='middle_port']/form/div[8]")
+                    self.selenium.click("link=Today")
+                    self.selenium.click("discussion")
+                    self.selenium.click("//img[@alt='Calendar']")
+                    self.selenium.click("link=28")
+                    self.selenium.type("maintainer_email", "bogdan.tanase@eaudeweb.ro")
+                    self.selenium.click("//input[@value='Submit']")
+                    self.selenium.wait_for_page_to_load("30000")
+
+                if(option == "News"):
+                    self.selenium.select("typetoadd", "index=" + str(select_options[option]))
+                    self.assertTrue(self.selenium.is_something_selected("typetoadd"));
+                    self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
+                    self.selenium.wait_for_page_to_load("15000")
+                    if(self.selenium.is_element_present("id=lang") == False):
+                        self.verificationErrors.append("Language element not"
+                                                       " identified")
+
+
+                    self.selenium.select("id=lang", "value=en")
+                    self.selenium.type("title", "My News")
+                    self.selenium.type("coverage", "aoqk")
+                    self.selenium.type("coverage", "test coverage")
+                    self.selenium.type("keywords", "news, test")
+                    self.selenium.type("sortorder", "83")
+                    self.selenium.click("link=Today")
+                    self.selenium.click("//img[@alt='Calendar']")
+                    self.selenium.click("link=31")
+                    self.selenium.type("releasedate", "29/07/2009")
+                    self.selenium.click("discussion")
+                    self.selenium.click("link=Today")
+                    self.selenium.click("//div[@id='middle_port']/form/div[10]/span/a[1]")
+                    self.selenium.click("//a[@id='calendarlink1']/img")
+                    self.selenium.click("//div[@id='calendarin1']/table/tbody/tr[2]/td[1]/a")
+                    self.selenium.click("topitem")
+                    self.selenium.type("resourceurl", "http://www.eaudeweb.ro/")
+                    self.selenium.type("source", "http://www.wikipedia.com/")
+                    self.selenium.type("smallpicture", "/home/bogdan/Desktop/brain-icon.png")
+                    self.selenium.click("//input[@value='Submit']")
+                    self.selenium.wait_for_page_to_load("30000")
 
     def tearDown(self):
         self.selenium.stop()
         self.assertEqual([], self.verificationErrors)
-
-#if __name__ == "__main__":
-#    suite = unittest.TestLoader().loadTestsFromTestCase(DocumentTest)

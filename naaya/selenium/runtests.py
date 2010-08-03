@@ -1,8 +1,5 @@
-import sys
 import os
 import importlib
-import inspect
-import optparse
 import time
 import re
 import unittest
