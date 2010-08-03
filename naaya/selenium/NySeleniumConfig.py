@@ -10,7 +10,7 @@ class NySeleniumConfig:
 
     def ParseArguments(self, options):
         options.add_option('--site', '-s', default='http://localhost:8080/')
-        options.add_option('--browsers', '-b', default="all")
+        options.add_option('--browsers', '-b', default="*firefox")
         options.add_option('--user', '-u', default="admin")
         options.add_option('--password', '-P', default="admin")
         parsed_options, arguments = options.parse_args()

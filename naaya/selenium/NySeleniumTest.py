@@ -34,5 +34,9 @@ class NySeleniumTest(unittest.TestCase):
                     self.selenium = selenium("localhost", 5555, browsers[0],\
                                          configuration.data['site'])
                     self.selenium.start()
+        #elif(len(browsers) == 0):
+        #    self.selenium = selenium("localhost", 5555, "*firefox",\
+        #                                 configuration.data['site'])
+        #    self.selenium.start()
         else:
-            print "No existing browser!"
+            self.verificationErrors.append("Could not start selenium instance")
