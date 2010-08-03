@@ -497,7 +497,7 @@ class NaayaDocumentTest(NySeleniumTest):
 
                     self.selenium.click("link=Information")
                     self.selenium.wait_for_page_to_load("30000")
-
+                    print 1
                     loaded = False
                     while(loaded == False):
                         loaded = self.selenium.is_element_present("typetoadd")
