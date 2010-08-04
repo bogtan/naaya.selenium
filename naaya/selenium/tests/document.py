@@ -48,7 +48,7 @@ class NaayaDocumentTest(NySeleniumTest):
         self.selenium.type("__ac_password", configuration.data['password'])
         self.selenium.click("submit")
 
-        self.selenium.wait_for_page_to_load("15000")
+        self.selenium.wait_for_page_to_load("30000")
 
         if(self.selenium.is_element_present("__ac_name") and \
             (self.selenium.is_element_present("__ac_password"))):
@@ -59,10 +59,10 @@ class NaayaDocumentTest(NySeleniumTest):
         logger.info("Access portal`s main page")
 
         self.selenium.open('/portal')
-        self.selenium.wait_for_page_to_load("15000")
+        self.selenium.wait_for_page_to_load("30000")
         logger.info("Access Information page")
         self.selenium.click("link=Information")
-        self.selenium.wait_for_page_to_load("15000")
+        self.selenium.wait_for_page_to_load("30000")
 
         logger.info("Looking for `typetoadd` select field...")
         if(self.selenium.is_element_present("typetoadd") == False):
@@ -87,7 +87,7 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.select("typetoadd", "index=" + str(select_options[option]))
                     self.assertTrue(self.selenium.is_something_selected("typetoadd"));
                     #self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
-                    self.selenium.wait_for_page_to_load("15000")
+                    self.selenium.wait_for_page_to_load("30000")
                     if(self.selenium.is_element_present("id=lang") == False):
                         self.verificationErrors.append("Language element not"
                                                        " identified")
@@ -143,7 +143,7 @@ class NaayaDocumentTest(NySeleniumTest):
                         loaded = self.selenium.is_element_present("link=Information")
 
                     self.selenium.click("link=Information")
-                    self.selenium.wait_for_page_to_load("15000")
+                    self.selenium.wait_for_page_to_load("30000")
 
                     loaded = False
                     while(loaded == False):
@@ -189,7 +189,7 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.wait_for_page_to_load("30000")
 
                 if(option == "Folder"):
-                    logger.info("Try to select Folder item...")
+                    logger.info("Try to select FOLDER item...")
 
                     loaded = False
                     while(loaded == False):
@@ -210,14 +210,14 @@ class NaayaDocumentTest(NySeleniumTest):
                         self.verificationErrors.append("Language element not"
                                                        " identified")
 
-                    logger.info("Folder item selected...")
-                    logger.info("Add Folder page accessed...")
+                    logger.info("FOLDER item selected...")
+                    logger.info("FOLDER add page accessed...")
 
                     self.selenium.select("id=lang", "value=en")
                     self.selenium.type("title", "My Folder")
                     self.selenium.type("id=description", "This is a text")
                     self.selenium.type("coverage", "Folder geo cov")
-                    self.selenium.type("keywords", "my folder, test, folder, test folder")
+                    self.selenium.type("keywords", "my folder, test, folder, FOLDER")
                     self.selenium.type("sortorder", "124")
                     self.selenium.click("link=Today")
                     self.selenium.click("//img[@alt='Calendar']")
@@ -228,34 +228,34 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("//input[@value='Submit']")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Test Folder added...")
+                    logger.info("FOLDER added...")
 
                     self.selenium.click("//table[@id='folderfile_list']/tbody/tr[2]/td[3]/a")
                     self.selenium.wait_for_page_to_load("30000")
                     self.selenium.click("//div[@id='admin_this_folder']/a[1]/span")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Test Folder editing accessed...")
+                    logger.info("FOLDER editing accessed...")
 
                     self.selenium.type("title", "My Folder updated")
                     self.selenium.type("id=description", "This is a text updated")
                     self.selenium.type("coverage", "Folder geo cov updated")
-                    self.selenium.type("keywords", "my folder, test, folder, test folder, folder updated")
+                    self.selenium.type("keywords", "my folder, test, folder, FOLDER, folder updated")
                     self.selenium.type("sortorder", "122")
                     self.selenium.click("link=Today")
                     self.selenium.click("discussion")
                     self.selenium.type("maintainer_email", "bogdan.tanase@eaudeweb.ro")
-                    self.selenium.click("saveProperties:method")
+                    self.selenium.click("//input[@value='Save changes']")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Test Folder succesfully edited...")
+                    logger.info("FOLDER succesfully edited...")
 
                     self.selenium.click("link=Back to index")
                     self.selenium.wait_for_page_to_load("30000")
                     self.selenium.click("//div[@id='admin_this_folder']/a[2]/span")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Test Folder subobjects accessed...")
+                    logger.info("FOLDER subobjects accessed...")
 
                     self.selenium.click("load_default")
                     self.selenium.click("load_default")
@@ -274,12 +274,12 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("submit")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Test Folder subobjects added...")
+                    logger.info("FOLDER subobjects added...")
 
                     self.selenium.click("link=Back to index")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Test Folder approvals accessed...")
+                    logger.info("FOLDER approvals accessed...")
 
                     self.selenium.click("link=Approvals")
                     self.selenium.wait_for_page_to_load("30000")
@@ -290,7 +290,7 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("link=Back to index")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Test Folder restricts accessed...")
+                    logger.info("FOLDER restricts accessed...")
 
                     self.selenium.click("link=Restrict")
                     self.selenium.wait_for_page_to_load("30000")
@@ -301,7 +301,7 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("//input[@value='Save changes']")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Test Folder restricts added...")
+                    logger.info("FOLDER restricts added...")
 
                     self.selenium.click("link=Back to index")
                     self.selenium.wait_for_page_to_load("30000")
@@ -320,7 +320,7 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("//div[@id='breadcrumbtrail']/a[3]")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Add folder comment")
+                    logger.info("FOLDER add comment")
 
                     self.selenium.click("link=Add comment")
                     self.selenium.wait_for_page_to_load("30000")
@@ -328,20 +328,20 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("//input[@value='Submit']")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Folder comment succesully added")
+                    logger.info("FOLDER comment succesully added")
 
                     self.selenium.click("link=Delete comment")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Folder comment succesully deleted")
-                    logger.info("Add NEWS item to folder")
+                    logger.info("FOLDER comment succesully deleted")
+                    logger.info("FOLDER add NEWS item...")
 
                     self.selenium.select("typetoadd", "label=News")
                     self.selenium.wait_for_page_to_load("30000")
                     self.selenium.type("title", "My folder News")
                     self.selenium.type("id=description", "This is a text")
                     self.selenium.type("coverage", "Folder geo cov news")
-                    self.selenium.type("keywords", "my folder, test, folder, test folder, news")
+                    self.selenium.type("keywords", "my folder, test, folder, FOLDER, news")
                     self.selenium.type("sortorder", "25")
                     self.selenium.click("link=Today")
                     self.selenium.click("discussion")
@@ -355,13 +355,13 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("//input[@value='Submit']")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("NEWS item succesfully added to folder")
+                    logger.info("FOLDER NEWS item succesfully added")
 
                     self.selenium.click("//input[@type='checkbox']")
                     self.selenium.click("deleteObjects:method")
                     self.failUnless(re.search(r"^Are you sure[\s\S]$", self.selenium.get_confirmation()))
 
-                    logger.info("NEWS item succesfully deleted from folder")
+                    logger.info("FOLDER NEWS item succesfully deleted")
 
                     loaded = False
                     while(loaded == False):
@@ -372,7 +372,7 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("deleteObjects:method")
                     self.failUnless(re.search(r"^Are you sure[\s\S]$", self.selenium.get_confirmation()))
 
-                    logger.info("Folder succesfully deleted")
+                    logger.info("FOLDER succesfully deleted")
 
                     loaded = False
                     while(loaded == False):
@@ -432,7 +432,7 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("link=My News")
                     self.selenium.wait_for_page_to_load("30000")
 
-                    logger.info("Add NEWS comment...")
+                    logger.info("NEWS add comment...")
 
                     self.selenium.click("link=Add comment")
                     self.selenium.wait_for_page_to_load("30000")
@@ -465,7 +465,7 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("//div[@id='calendarin1']/table/tbody/tr[5]/td[4]/a")
                     self.selenium.type("smallpicture", "/home/bogdan/Desktop/logo.png")
                     self.selenium.type("bigpicture", "/home/bogdan/Desktop/no-pre.png")
-                    self.selenium.click("saveProperties:method")
+                    self.selenium.click("//input[@value='Save changes']")
                     self.selenium.wait_for_page_to_load("30000")
 
                     logger.info("NEWS item succesfully edited...")
@@ -511,7 +511,7 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.select("typetoadd", "index=" + str(select_options[option]))
                     self.assertTrue(self.selenium.is_something_selected("typetoadd"));
                     #self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
-                    self.selenium.wait_for_page_to_load("15000")
+                    self.selenium.wait_for_page_to_load("30000")
                     if(self.selenium.is_element_present("id=lang") == False):
                         self.verificationErrors.append("Language element not"
                                                        " identified")
@@ -545,7 +545,7 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("link=Today")
                     self.selenium.click("//img[@alt='Calendar']")
                     self.selenium.click("link=19")
-                    self.selenium.click("saveProperties:method")
+                    self.selenium.click("//input[@value='Save changes']")
                     self.selenium.wait_for_page_to_load("30000")
 
                     logger.info("HTML DOCUMENT succesfully edited...")
@@ -588,6 +588,173 @@ class NaayaDocumentTest(NySeleniumTest):
                     self.selenium.click("deleteObjects:method")
                     self.failUnless(re.search(r"^Are you sure[\s\S]$", self.selenium.get_confirmation()))
                     logger.info("HTML DOCUMENT succesfully deleted...")
+
+                    loaded = False
+                    while(loaded == False):
+                        loaded = self.selenium.is_element_present("link=Information")
+                    self.selenium.click("link=Information")
+                    self.selenium.wait_for_page_to_load("30000")
+
+                if(option == "Pointer"):
+                    loaded = False
+                    while(loaded == False):
+                        loaded = self.selenium.is_element_present("link=Information")
+
+                    self.selenium.click("link=Information")
+                    self.selenium.wait_for_page_to_load("30000")
+
+                    loaded = False
+                    while(loaded == False):
+                        loaded = self.selenium.is_element_present("typetoadd")
+                    if(loaded == False):
+                        self.verificationErrors.append("Information page was"
+                                                       " not loaded!"
+                                                       " Test closed!")
+
+                    logger.info("Try to select POINTER item...")
+
+                    self.selenium.select("typetoadd", "index=" + str(select_options[option]))
+                    self.assertTrue(self.selenium.is_something_selected("typetoadd"));
+                    #self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
+                    self.selenium.wait_for_page_to_load("30000")
+                    if(self.selenium.is_element_present("id=lang") == False):
+                        self.verificationErrors.append("Language element not"
+                                                       " identified")
+
+                    self.selenium.type("title", "Pointer test updated")
+
+                    logger.info("POINTER add page accessed...")
+
+                    self.selenium.type("coverage", "Pointer geo cov updated")
+                    self.selenium.type("keywords", "pointer, test updated")
+                    self.selenium.click("link=Today")
+                    self.selenium.click("//img[@alt='Calendar']")
+                    self.selenium.click("link=31")
+                    self.selenium.click("//div[@id='sitemap_tree_pointer']/ul/li/ul/li[2]/a")
+                    self.selenium.click("//input[@value='Submit']")
+                    self.selenium.wait_for_page_to_load("30000")
+
+                    logger.info("POINTER added...")
+                    logger.info("POINTER access edit...")
+
+                    loaded = False
+                    while(loaded == False):
+                        loaded = self.selenium.is_element_present("link=Information")
+                    self.selenium.click("link=Information")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("link=Pointer test updated")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("link=Edit")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("//div[@id='sitemap_tree_pointer']/ul/li/a/ins")
+                    self.selenium.click("//input[@value='Save changes']")
+                    self.selenium.wait_for_page_to_load("30000")
+
+                    logger.info("POINTER eddited...")
+
+                    self.selenium.click("link=Information")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.click("link=Pointer test updated")
+                    self.selenium.wait_for_page_to_load("30000")
+
+                    loaded = False
+                    while(loaded == False):
+                        loaded = self.selenium.is_element_present("link=Information")
+                    self.selenium.click("link=Information")
+                    self.selenium.wait_for_page_to_load("30000")
+
+                    if(self.selenium.is_element_present("//input[@name='id' and @value='pointer-test-updated']")):
+                        self.selenium.click("//input[@name='id' and @value='pointer-test-updated']")
+                        self.selenium.click("deleteObjects:method")
+                        self.failUnless(re.search(r"^Are you sure[\s\S]$", self.selenium.get_confirmation()))
+
+                        logger.info("POINTER deleted...")
+                    else:
+                        logger.error("POINTER can not be deleted!")
+                        self.verificationErrors.append("POINTER was not deleted")
+
+                    loaded = False
+                    while(loaded == False):
+                        loaded = self.selenium.is_element_present("link=Information")
+                    self.selenium.click("link=Information")
+                    self.selenium.wait_for_page_to_load("30000")
+
+                if(option == "URL"):
+                    loaded = False
+                    while(loaded == False):
+                        loaded = self.selenium.is_element_present("link=Information")
+
+                    self.selenium.click("link=Information")
+                    self.selenium.wait_for_page_to_load("30000")
+
+                    loaded = False
+                    while(loaded == False):
+                        loaded = self.selenium.is_element_present("typetoadd")
+                    if(loaded == False):
+                        self.verificationErrors.append("Information page was"
+                                                       " not loaded!"
+                                                       " Test closed!")
+
+                    logger.info("Try to select URL item...")
+
+                    self.selenium.select("typetoadd", "index=" + str(select_options[option]))
+                    self.assertTrue(self.selenium.is_something_selected("typetoadd"));
+                    #self.assertEquals(option, self.selenium.get_selected_label("typetoadd"));
+                    self.selenium.wait_for_page_to_load("30000")
+                    if(self.selenium.is_element_present("id=lang") == False):
+                        self.verificationErrors.append("Language element not"
+                                                       " identified")
+
+                    self.selenium.type("title", "URL test")
+
+                    logger.info("URL add page accessed...")
+                    self.selenium.type("coverage", "URL geo cov")
+                    self.selenium.type("keywords", "url, test")
+                    self.selenium.type("sortorder", "135")
+                    self.selenium.click("link=Today")
+                    self.selenium.click("//img[@alt='Calendar']")
+                    self.selenium.click("link=4")
+                    self.selenium.click("discussion")
+                    self.selenium.click("redirect")
+                    self.selenium.type("locator", "http://www.eaudeweb.ro/")
+                    self.selenium.click("//input[@value='Submit']")
+                    self.selenium.wait_for_page_to_load("30000")
+
+                    logger.info("URL succesfully added...")
+                    logger.info("URL attempt to access edit page...")
+
+                    self.selenium.open("/portal/info/url-test/edit_html")
+                    self.selenium.wait_for_page_to_load("30000")
+                    self.selenium.type("title", "URL Test updated")
+
+                    logger.info("URL edit accessed...")
+
+                    self.selenium.type("coverage", "URL geo covupdated")
+                    self.selenium.type("keywords", "url, testupdated")
+                    self.selenium.type("sortorder", "531")
+                    self.selenium.click("//img[@alt='Calendar']")
+                    self.selenium.click("link=24")
+                    self.selenium.click("link=Today")
+                    self.selenium.click("//img[@alt='Calendar']")
+                    self.selenium.click("link=24")
+                    self.selenium.click("//input[@value='Save changes']")
+                    self.seleniumm.wait_for_page_to_load("30000")
+                    logger.info("URL succesfully edited...")
+                    loaded = False
+                    while(loaded == False):
+                        loaded = self.selenium.is_element_present("link=Information")
+                    self.selenium.click("link=Information")
+                    self.selenium.wait_for_page_to_load("30000")
+
+                    if(self.selenium.is_element_present("//input[@name='id' and @value='url-test-updated']")):
+                        self.selenium.click("//input[@name='id' and @value='url-test-updated']")
+                        self.selenium.click("deleteObjects:method")
+                        self.failUnless(re.search(r"^Are you sure[\s\S]$", self.selenium.get_confirmation()))
+
+                        logger.info("URL deleted...")
+                    else:
+                        logger.error("URL can not be deleted!")
+                        self.verificationErrors.append("URL was not deleted")
 
                     loaded = False
                     while(loaded == False):
